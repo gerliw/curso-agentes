@@ -1,9 +1,9 @@
 from langchain_core.runnables import RunnableLambda, RunnableParallel
-from langchain_openai import ChatOpenAI
+from langchain_google_genai import ChatGoogleGenerativeAI
 import json
 
 # Configuración del modelo
-llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
+llm = ChatGoogleGenerativeAI(model="gemini-pro", temperature=0, convert_system_message_to_human=True)
 
 # Preprocesador: limpia espacios y limita a 500 caracteres
 def preprocess_text(text):

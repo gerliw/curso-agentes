@@ -6,10 +6,17 @@ setear variable GEMINI_API_KEY en powershell
 
 ```powershell
 setx GEMINI_API_KEY ""
+$env:GEMINI_API_KEY=""
+
 ```
 
 ## Streamlit Chatbot
 
 ```powershell
 streamlit run .\tema1\streamlit_chatbot.py
+```
+
+## Activar venv
+```powershell
+\venv\Scripts\Activate.ps1
 ```
