@@ -1,0 +1,21 @@
+from langchain_community.vectorstores import Chroma
+from langchain_google_genai import GoogleGenerativeAIEmbeddings, ChatGoogleGenerativeAI
+from langchain_classic.retrievers.multi_query import MultiQueryRetriever
+
+vectorstore = Chroma(
+    embedding_function=GoogleGenerativeAIEmbeddings(model="gemini-embedding-001"),
+    persist_directory="tema3/3_bd_vectoriales/chroma_db"
+)
+
+llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0)
+
+base_retriever = vectorstore.as_retriever(search_type="similarity", search_kwargs={"k": 2})
+retriever = MultiQueryRetriever.from_llm(retriever=base_retriever, llm=llm)
+
+consulta = "¿Dónde se encuentra el local del contrato en el que participa María Jiménez Campos?"
+resultados = retriever.invoke(consulta)
+
+print("Top documentos mas similares a la consulta:\n")
+for i, doc in enumerate(resultados, start=1):
+    print(f"Contenido: {doc.page_content}")
+    print(f"Metadatos: {doc.metadata}")
