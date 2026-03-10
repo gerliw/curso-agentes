@@ -2,7 +2,8 @@ import streamlit as st
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
 from langchain_core.prompts import PromptTemplate
-
+# inicializar con
+# streamlit run .\tema1\streamlit_chatbot.py
 # Configuración inicial
 st.set_page_config(page_title="Chatbot Básico", page_icon="🤖")
 st.title("🤖 Chatbot Básico con LangChain")
